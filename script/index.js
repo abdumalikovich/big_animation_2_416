@@ -1,11 +1,31 @@
-let items = document.querySelectorAll('main .screen-one .item')
-let screen_one = document.querySelector('main .screen-one')
+let menu = document.querySelector('.menu')
+let open_menu = document.querySelector('.open')
+let logo = document.querySelector('svg')
+let links = document.querySelectorAll('.menu .menu-main a')
+let counter = 0
 
-for(let item of items) {
-    item.onmouseenter = () => {
-        let image = event.target.getAttribute('data-image')
+open_menu.onclick = () => {
+    menu.classList.add('active')
+    menu.classList.add('active_bg')
 
-        if(image) screen_one.style.backgroundImage = `url(${image})`
-        else screen_one.style.backgroundImage = 'url(https://www.peterfell.co.nz/wp-content/uploads/Peter-Fell-coloured-concrete-floor-Queensberry-Hills-House-Wanaka-Cromwell2.jpg)'
-    }
+    setTimeout(() => {
+        logo.classList.add('active')
+        
+        setTimeout(() => {
+            open_menu.classList.add('active')
+
+            let show_links = setInterval(() => {
+                if(counter >= links.length - 1) clearInterval(show_links)
+                
+                links[counter++].classList.add('active')
+            }, 250)
+        }, 600)
+    }, 600)
 }
+
+// let a = setInterval(() => {
+//     console.log('interval');
+// }, 500)
+// let b = setTimeout(() => {
+//     clearInterval(a)
+// }, 1500)
